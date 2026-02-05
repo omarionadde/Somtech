@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { LanguageContext } from '../App';
 import { db } from '../lib/db';
 import { Service } from '../types';
-import { ICON_MAP } from '../constants';
+import { ICON_MAP, WHATSAPP_NUMBER } from '../constants';
 import { ArrowLeft, CheckCircle2, MessageSquare, ChevronRight, ArrowUpRight } from 'lucide-react';
 
 const ServiceDetail: React.FC = () => {
@@ -169,7 +169,7 @@ const ServiceDetail: React.FC = () => {
                   ? "Speak with our consultants about how we can help your business grow."
                   : "La hadal la-taliyayaashayada ku saabsan sida aan gacan uga geysan karno koritaanka ganacsigaaga."}
                </p>
-               <a href={`https://wa.me/${'+252620000959'.replace('+', '')}`} className="block w-full bg-white text-somtech-blue font-bold py-4 rounded-xl hover:bg-somtech-accent transition-colors">
+               <a href={`https://wa.me/${WHATSAPP_NUMBER.replace('+', '')}`} className="block w-full bg-white text-somtech-blue font-bold py-4 rounded-xl hover:bg-somtech-accent transition-colors">
                   WhatsApp Us
                </a>
             </div>
