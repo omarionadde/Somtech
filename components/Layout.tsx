@@ -21,76 +21,68 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* 2026 Design: Floating Pill Container */}
-      <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+      {/* 2026 Design: Floating Pill Container - Dark Theme Fixed */}
+      <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 sm:px-6">
         <nav 
           className={`
-            relative w-full max-w-5xl transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]
-            flex items-center justify-between pl-6 pr-2 py-2 rounded-full
-            ${scrolled || isOpen 
-              ? 'bg-[#0B1E3F]/80 backdrop-blur-2xl border border-white/10 shadow-2xl shadow-black/20' 
-              : 'bg-white/5 backdrop-blur-md border border-white/10 shadow-lg shadow-black/5'}
+            w-full max-w-[1200px] transition-all duration-300
+            flex items-center justify-between pl-3 pr-3 py-3 rounded-full
+            bg-[#0B1E3F]/90 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/20
           `}
         >
-          
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-             <div className="w-8 h-8 flex items-center justify-center bg-white rounded-full p-1.5 shadow-inner">
+          <Link to="/" className="flex items-center gap-3 pl-1 group">
+             <div className="w-10 h-10 flex items-center justify-center bg-white rounded-full p-2 shadow-lg group-hover:scale-105 transition-transform">
                 <img src={LOGO_URL} alt={COMPANY_NAME} className="w-full h-full object-contain" />
              </div>
-             <span className={`text-lg font-bold tracking-tight transition-colors duration-300 ${scrolled || isOpen ? 'text-white' : 'text-white'}`}>
+             <span className="text-xl font-bold text-white tracking-tight hidden sm:block">
                {COMPANY_NAME}
              </span>
           </Link>
 
-          {/* Desktop Links - Clean Typography */}
-          <div className="hidden lg:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
-            {NAV_LINKS.map((link) => (
-              <Link 
-                key={link.path} 
-                to={link.path}
-                className={`
-                  px-5 py-2 rounded-full text-[13px] font-medium transition-all duration-300
-                  ${isActive(link.path) 
-                    ? 'text-white bg-white/10 shadow-inner' 
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'}
-                `}
-              >
-                {link.label[lang]}
-              </Link>
-            ))}
+          {/* Desktop Links */}
+          <div className="hidden lg:flex items-center justify-center flex-1 px-4">
+            <div className="flex items-center gap-1">
+              {NAV_LINKS.map((link) => (
+                <Link 
+                  key={link.path} 
+                  to={link.path}
+                  className={`
+                    px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-300
+                    ${isActive(link.path) 
+                      ? 'bg-white/15 text-white shadow-inner backdrop-blur-sm' 
+                      : 'text-gray-300 hover:text-white hover:bg-white/5'}
+                  `}
+                >
+                  {link.label[lang]}
+                </Link>
+              ))}
+            </div>
           </div>
 
           {/* Right Actions */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="flex items-center gap-4">
+             {/* Language */}
              <button 
                 onClick={() => setLang(lang === 'en' ? 'so' : 'en')}
-                className="flex items-center gap-2 px-3 py-2 rounded-full text-[11px] font-bold text-gray-300 hover:text-white transition-colors uppercase tracking-wider"
+                className="flex items-center gap-2 text-gray-300 hover:text-white text-xs font-bold uppercase tracking-wider transition-colors px-2"
               >
-                <Globe size={14} /> {lang}
+                <Globe size={18} /> <span className="hidden sm:inline">{lang}</span>
               </button>
 
-             {/* Vibrant CTA Button */}
+             {/* CTA Button */}
              <Link 
                 to="/contact" 
-                className="bg-[#00E08F] text-[#0B1E3F] pl-5 pr-4 py-2.5 rounded-full font-bold text-xs hover:bg-white transition-all duration-300 flex items-center gap-2 group shadow-[0_0_20px_rgba(0,224,143,0.3)] hover:shadow-[0_0_30px_rgba(0,224,143,0.5)]"
+                className="hidden sm:flex bg-[#00E08F] text-[#0B1E3F] px-6 py-3 rounded-full font-bold text-xs hover:bg-white hover:scale-105 transition-all duration-300 items-center gap-2 shadow-[0_0_15px_rgba(0,224,143,0.4)]"
               >
                 {lang === 'en' ? "LET'S TALK" : 'NALA HADAL'}
-                <ArrowUpRight size={16} className="group-hover:rotate-45 transition-transform duration-300" />
+                <ArrowUpRight size={18} />
              </Link>
-          </div>
 
-          {/* Mobile Toggle */}
-          <div className="lg:hidden flex items-center gap-3">
+              {/* Mobile Menu Button */}
              <button 
-                onClick={() => setLang(lang === 'en' ? 'so' : 'en')}
-                className="text-[10px] font-bold text-white/80 uppercase"
-              >
-                {lang}
-              </button>
-            <button 
               onClick={toggleMenu} 
-              className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white backdrop-blur-md active:scale-95 transition-transform"
+              className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white backdrop-blur-md active:scale-95 transition-transform"
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>

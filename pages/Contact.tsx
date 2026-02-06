@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { LanguageContext } from '../App';
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from 'lucide-react';
 import { CONTACT_EMAIL, WHATSAPP_NUMBER } from '../constants';
 import { db } from '../lib/db';
 
@@ -28,112 +28,157 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="fade-in py-20 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold text-somtech-blue mb-4">
-                {lang === 'en' ? 'Contact Us' : 'Nala Soo Xiriir'}
-            </h1>
-            <p className="text-gray-600">
-                {lang === 'en' ? 'We are here to answer any questions you may have about our services.' : 'Waxaan halkaan u joognaa inaan ka jawaabno su\'aal kasta oo aad qabto.'}
-            </p>
-        </div>
+    <div className="bg-[#F8FAFC] min-h-screen relative">
+      {/* Background Map Graphic (Abstract) */}
+      <div className="absolute inset-0 bg-[#0B1E3F] z-0 overflow-hidden">
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#4b5563 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-[#3B82F6] rounded-full filter blur-[150px] opacity-20 animate-blob"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-[#00E08F] rounded-full filter blur-[150px] opacity-10 animate-blob animation-delay-2000"></div>
+      </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
-            <div className="space-y-8">
-                <div className="bg-blue-50 p-8 rounded-2xl">
-                    <h3 className="text-2xl font-bold text-somtech-blue mb-6">
-                        {lang === 'en' ? 'Get In Touch' : 'La Xiriir'}
-                    </h3>
-                    <div className="space-y-6">
-                        <div className="flex items-start gap-4">
-                            <MapPin className="text-somtech-accent shrink-0 mt-1" />
-                            <div>
-                                <h4 className="font-bold text-gray-900">Location</h4>
-                                <p className="text-gray-600">KM4 Junction, Mogadishu, Somalia</p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                            <Phone className="text-somtech-accent shrink-0 mt-1" />
-                            <div>
-                                <h4 className="font-bold text-gray-900">Phone</h4>
-                                <p className="text-gray-600">{WHATSAPP_NUMBER}</p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                            <Mail className="text-somtech-accent shrink-0 mt-1" />
-                            <div>
-                                <h4 className="font-bold text-gray-900">Email</h4>
-                                <p className="text-gray-600">{CONTACT_EMAIL}</p>
-                            </div>
-                        </div>
-                        <div className="flex items-start gap-4">
-                            <Clock className="text-somtech-accent shrink-0 mt-1" />
-                            <div>
-                                <h4 className="font-bold text-gray-900">Working Hours</h4>
-                                <p className="text-gray-600">Sat - Thu: 8:00 AM - 5:00 PM</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <div className="container mx-auto px-6 relative z-10 pt-20 pb-20">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+            
+            {/* Left Content */}
+            <div className="lg:col-span-5 text-white">
+                <span className="text-[#00E08F] font-bold tracking-widest uppercase text-xs mb-6 block">
+                    {lang === 'en' ? 'Get In Touch' : 'Nala Soo Xiriir'}
+                </span>
+                <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                    {lang === 'en' ? 'Let’s start a' : 'Aan bilowno'} <br/>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E08F] to-emerald-200">{lang === 'en' ? 'conversation.' : 'wada hadal.'}</span>
+                </h1>
+                <p className="text-blue-100/80 text-lg mb-12 max-w-md">
+                    {lang === 'en' ? 'Have a project in mind? We would love to hear from you. Visit us or send a message.' : 'Ma haysaa mashruuc? Waxaan jeclaan lahayn inaan kaa maqalno. Na soo booqo ama fariin soo dir.'}
+                </p>
 
-                {/* Map Placeholder */}
-                <div className="bg-gray-200 h-64 rounded-2xl overflow-hidden relative">
-                    <iframe 
-                        title="map"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.310123456789!2d45.312345!3d2.034567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwMDInMDQuNCJOIDQ1wrAxOCw0NC40IkU!5e0!3m2!1sen!2sso!4v1600000000000!5m2!1sen!2sso" 
-                        width="100%" 
-                        height="100%" 
-                        style={{ border: 0 }} 
-                        loading="lazy"
-                    ></iframe>
+                <div className="space-y-8">
+                     <div className="flex items-start gap-6 group">
+                        <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#00E08F] group-hover:text-[#0B1E3F] transition-all duration-300">
+                            <MapPin size={20} />
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-lg mb-1">Mogadishu HQ</h4>
+                            <p className="text-blue-200 text-sm">KM4 Junction, Mogadishu, Somalia</p>
+                        </div>
+                     </div>
+                     <div className="flex items-start gap-6 group">
+                        <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#00E08F] group-hover:text-[#0B1E3F] transition-all duration-300">
+                            <Mail size={20} />
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-lg mb-1">Email Us</h4>
+                            <p className="text-blue-200 text-sm">{CONTACT_EMAIL}</p>
+                        </div>
+                     </div>
+                     <div className="flex items-start gap-6 group">
+                        <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#00E08F] group-hover:text-[#0B1E3F] transition-all duration-300">
+                            <Phone size={20} />
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-lg mb-1">Call Us</h4>
+                            <p className="text-blue-200 text-sm">{WHATSAPP_NUMBER}</p>
+                        </div>
+                     </div>
                 </div>
             </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-                <h3 className="text-2xl font-bold text-somtech-blue mb-6">
-                    {lang === 'en' ? 'Send a Message' : 'Dir Fariin'}
-                </h3>
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">Name</label>
-                        <input name="name" value={formData.name} onChange={handleChange} type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-somtech-blue focus:ring-1 focus:ring-somtech-blue outline-none transition" required />
+            {/* Right Form - Floating Glass */}
+            <div className="lg:col-span-7">
+                <form onSubmit={handleSubmit} className="bg-white rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-black/20">
+                    <h3 className="text-2xl font-bold text-[#0B1E3F] mb-8">
+                        {lang === 'en' ? 'Send a Message' : 'Dir Fariin'}
+                    </h3>
+                    
+                    <div className="grid md:grid-cols-2 gap-6 mb-6">
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-400 uppercase tracking-wider ml-2">Name</label>
+                            <input 
+                                name="name" 
+                                value={formData.name} 
+                                onChange={handleChange} 
+                                type="text" 
+                                placeholder="John Doe"
+                                className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:bg-white focus:border-[#0B1E3F] outline-none transition-all font-medium text-[#0B1E3F]" 
+                                required 
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-bold text-gray-400 uppercase tracking-wider ml-2">Phone</label>
+                            <input 
+                                name="phone" 
+                                value={formData.phone} 
+                                onChange={handleChange} 
+                                type="tel" 
+                                placeholder="+252..."
+                                className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:bg-white focus:border-[#0B1E3F] outline-none transition-all font-medium text-[#0B1E3F]" 
+                                required 
+                            />
+                        </div>
                     </div>
-                    <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">Phone</label>
-                        <input name="phone" value={formData.phone} onChange={handleChange} type="tel" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-somtech-blue focus:ring-1 focus:ring-somtech-blue outline-none transition" required />
-                    </div>
-                </div>
-                <div className="mb-6">
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Email</label>
-                    <input name="email" value={formData.email} onChange={handleChange} type="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-somtech-blue focus:ring-1 focus:ring-somtech-blue outline-none transition" required />
-                </div>
-                <div className="mb-6">
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Subject</label>
-                    <select name="subject" value={formData.subject} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-somtech-blue focus:ring-1 focus:ring-somtech-blue outline-none transition">
-                        <option>General Inquiry</option>
-                        <option>Request Quote</option>
-                        <option>Partnership</option>
-                        <option>Careers</option>
-                    </select>
-                </div>
-                <div className="mb-8">
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Message</label>
-                    <textarea name="message" value={formData.message} onChange={handleChange} rows={5} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-somtech-blue focus:ring-1 focus:ring-somtech-blue outline-none transition" required></textarea>
-                </div>
-                
-                {status === 'success' && (
-                    <div className="mb-4 p-4 bg-green-100 text-green-700 rounded-lg">
-                        {lang === 'en' ? 'Message sent successfully!' : 'Fariinta waa la diray!'}
-                    </div>
-                )}
 
-                <button type="submit" className="w-full bg-somtech-blue text-white font-bold py-4 rounded-lg hover:bg-blue-900 transition flex items-center justify-center gap-2">
-                    {lang === 'en' ? 'Send Message' : 'Dir Fariinta'} <Send size={18} />
-                </button>
-            </form>
+                    <div className="mb-6 space-y-2">
+                        <label className="text-xs font-bold text-gray-400 uppercase tracking-wider ml-2">Email</label>
+                        <input 
+                            name="email" 
+                            value={formData.email} 
+                            onChange={handleChange} 
+                            type="email" 
+                            placeholder="john@company.com"
+                            className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:bg-white focus:border-[#0B1E3F] outline-none transition-all font-medium text-[#0B1E3F]" 
+                            required 
+                        />
+                    </div>
+
+                    <div className="mb-6 space-y-2">
+                         <label className="text-xs font-bold text-gray-400 uppercase tracking-wider ml-2">Subject</label>
+                         <div className="relative">
+                            <select 
+                                name="subject" 
+                                value={formData.subject} 
+                                onChange={handleChange} 
+                                className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:bg-white focus:border-[#0B1E3F] outline-none transition-all font-medium text-[#0B1E3F] appearance-none cursor-pointer"
+                            >
+                                <option>General Inquiry</option>
+                                <option>Request Quote</option>
+                                <option>Partnership</option>
+                                <option>Careers</option>
+                            </select>
+                            <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                                <ArrowRight size={16} className="rotate-90" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mb-8 space-y-2">
+                        <label className="text-xs font-bold text-gray-400 uppercase tracking-wider ml-2">Message</label>
+                        <textarea 
+                            name="message" 
+                            value={formData.message} 
+                            onChange={handleChange} 
+                            rows={4} 
+                            placeholder="Tell us about your project..."
+                            className="w-full px-6 py-4 rounded-2xl bg-gray-50 border-2 border-transparent focus:bg-white focus:border-[#0B1E3F] outline-none transition-all font-medium text-[#0B1E3F] resize-none" 
+                            required
+                        ></textarea>
+                    </div>
+                    
+                    {status === 'success' && (
+                        <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-2xl flex items-center gap-2 border border-green-100">
+                            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                            {lang === 'en' ? 'Message sent successfully!' : 'Fariinta waa la diray!'}
+                        </div>
+                    )}
+
+                    <button 
+                        type="submit" 
+                        className="w-full bg-[#0B1E3F] text-white font-bold py-5 rounded-2xl hover:bg-[#3B82F6] transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-blue-900/20 group"
+                    >
+                        {lang === 'en' ? 'Send Message' : 'Dir Fariinta'} 
+                        <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </button>
+                </form>
+            </div>
         </div>
       </div>
     </div>

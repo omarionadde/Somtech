@@ -4,7 +4,7 @@ import { LanguageContext } from '../App';
 import { db } from '../lib/db';
 import { Service } from '../types';
 import { ICON_MAP } from '../constants';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 
 const Services: React.FC = () => {
   const { lang } = useContext(LanguageContext);
@@ -15,50 +15,57 @@ const Services: React.FC = () => {
   }, []);
 
   return (
-    <div className="fade-in">
-        <div className="py-20 bg-somtech-surface">
-            <div className="container mx-auto px-4 text-center">
-                <span className="text-somtech-lightBlue font-bold tracking-widest uppercase text-sm mb-4 block">What We Do</span>
-                <h1 className="text-5xl md:text-6xl font-bold text-somtech-blue mb-6">
-                    {lang === 'en' ? 'Our Expertise' : 'Khibaradeena'}
+    <div className="bg-[#F8FAFC] min-h-screen">
+        {/* Modern Header */}
+        <div className="container mx-auto px-6 pt-16 pb-20">
+            <div className="max-w-3xl">
+                <span className="text-[#00E08F] font-bold tracking-widest uppercase text-xs mb-4 block animate-fade-in-up">
+                    {lang === 'en' ? 'Our Capabilities' : 'Awoodeena'}
+                </span>
+                <h1 className="text-5xl md:text-7xl font-bold text-[#0B1E3F] mb-8 leading-[1.1] animate-fade-in-up [animation-delay:100ms]">
+                    {lang === 'en' ? 'Services designed for' : 'Adeegyo loo qaabeeyay'} <br/>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B1E3F] to-blue-600">{lang === 'en' ? 'growth & scale.' : 'koboca & baaxadda.'}</span>
                 </h1>
-                <p className="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
+                <p className="text-gray-500 text-xl leading-relaxed animate-fade-in-up [animation-delay:200ms]">
                     {lang === 'en' 
-                    ? "We deliver excellence across multiple sectors, ensuring your business has the support it needs to thrive." 
-                    : "Waxaan bixinaa heer sare qaybo badan, annagoo hubinayna in ganacsigaagu helo taageerada uu u baahan yahay si uu u horumaro."}
+                    ? "We deliver excellence across multiple sectors, ensuring your business has the robust foundation it needs to thrive in a competitive landscape." 
+                    : "Waxaan bixinaa heer sare qaybo badan, annagoo hubinayna in ganacsigaagu helo aasaas adag oo uu ugu baahan yahay inuu ku horumaro."}
                 </p>
             </div>
         </div>
 
-        <div className="container mx-auto px-4 pb-32">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {services.map((service) => {
+        {/* Services List - 2026 Interactive Style */}
+        <div className="container mx-auto px-6 pb-32">
+            <div className="flex flex-col gap-6">
+                {services.map((service, idx) => {
                     const Icon = ICON_MAP[service.iconName] || ICON_MAP['Briefcase'];
                     return (
                         <Link 
                             key={service.id} 
                             to={`/services/${service.id}`}
-                            className="group bg-white p-8 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-blue-900/10 hover:border-somtech-blue/20 transition-all duration-300 flex flex-col h-full"
+                            className="group relative bg-white rounded-[2.5rem] p-8 md:p-12 border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-[#0B1E3F]/10 transition-all duration-500 overflow-hidden flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-12 hover:-translate-y-1"
                         >
-                            <div className="flex justify-between items-start mb-8">
-                                <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-somtech-blue group-hover:bg-somtech-blue group-hover:text-white transition-colors duration-300">
-                                    <Icon size={32} strokeWidth={1.5} />
-                                </div>
-                                <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-somtech-accent group-hover:border-transparent transition-all">
-                                    <ArrowUpRight size={20} className="text-gray-400 group-hover:text-somtech-blue" />
-                                </div>
+                            {/* Hover Gradient Background */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E3F]/0 via-[#0B1E3F]/0 to-[#0B1E3F]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                            {/* Icon Box */}
+                            <div className="w-20 h-20 bg-[#F8FAFC] rounded-3xl flex items-center justify-center shrink-0 group-hover:bg-[#0B1E3F] transition-colors duration-500 relative z-10">
+                                <Icon strokeWidth={1.5} size={36} className="text-[#0B1E3F] group-hover:text-[#00E08F] transition-colors duration-500" />
                             </div>
-                            
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-somtech-blue transition-colors">
-                                {service.title[lang]}
-                            </h3>
-                            
-                            <p className="text-gray-500 leading-relaxed mb-6 flex-grow">
-                                {service.description[lang]}
-                            </p>
-                            
-                            <div className="w-full h-1 bg-gray-50 rounded-full overflow-hidden">
-                                <div className="h-full bg-somtech-accent w-0 group-hover:w-full transition-all duration-700 ease-out"></div>
+
+                            {/* Content */}
+                            <div className="flex-1 relative z-10">
+                                <h3 className="text-2xl md:text-3xl font-bold text-[#0B1E3F] mb-3">
+                                    {service.title[lang]}
+                                </h3>
+                                <p className="text-gray-500 text-lg leading-relaxed max-w-2xl group-hover:text-gray-600 transition-colors">
+                                    {service.description[lang]}
+                                </p>
+                            </div>
+
+                            {/* Action Arrow */}
+                            <div className="w-16 h-16 rounded-full border border-gray-100 flex items-center justify-center shrink-0 group-hover:bg-[#00E08F] group-hover:border-[#00E08F] transition-all duration-500 relative z-10">
+                                <ArrowUpRight size={28} className="text-gray-300 group-hover:text-[#0B1E3F] group-hover:rotate-45 transition-all duration-500" />
                             </div>
                         </Link>
                     );
