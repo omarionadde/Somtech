@@ -22,7 +22,7 @@ export const ICON_MAP: Record<string, any> = {
   Briefcase,
   TrendingUp,
   Cpu,
-  Truck,
+  Truck, 
   HardHat,
   Sparkles,
   ShieldCheck,
@@ -41,7 +41,7 @@ export const AVAILABLE_ICONS = Object.keys(ICON_MAP);
 export const COMPANY_NAME = "Somtech";
 export const COMPANY_TAGLINE = "Innovate. Connect. Future.";
 export const WHATSAPP_NUMBER = "+252620000959";
-export const CONTACT_EMAIL = "info@somyunimah.com";
+export const CONTACT_EMAIL = "hogaanonline@gmail.com";
 // User provided logo link
 export const LOGO_URL = "https://uploads.onecompiler.io/43zuwrmdd/44cqgnn4p/1000262328.png"; 
 

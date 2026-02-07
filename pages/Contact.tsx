@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { LanguageContext } from '../App';
-import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, ArrowRight } from 'lucide-react';
 import { CONTACT_EMAIL, WHATSAPP_NUMBER } from '../constants';
 import { db } from '../lib/db';
 
 const Contact: React.FC = () => {
   const { lang } = useContext(LanguageContext);
-  const [status, setStatus] = useState<'idle' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'success' | 'sending'>('idle');
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -19,12 +19,47 @@ const Contact: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus('sending');
+    
+    // 1. Save to local DB (For Admin Dashboard)
+    // This ensures we never lose a lead even if the email API fails
     db.addInquiry(formData);
-    setStatus('success');
+
+    // 2. Send Email via FormSubmit
+    // Using FormData is more robust against CORS issues than JSON
+    const body = new FormData();
+    body.append("name", formData.name);
+    body.append("email", formData.email);
+    body.append("phone", formData.phone);
+    body.append("subject", formData.subject);
+    body.append("message", formData.message);
+    
+    // FormSubmit Configuration fields
+    body.append("_subject", `New Message from ${formData.name} - Somtech Website`);
+    body.append("_template", "table");
+    body.append("_captcha", "false"); // Disable captcha for smoother experience
+    
+    try {
+      // We use the AJAX endpoint which returns JSON
+      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: "POST",
+        body: body,
+        // mode: 'no-cors' // Do NOT use no-cors with the /ajax/ endpoint or it breaks the JSON response
+      });
+      
+      // If the email address is new, FormSubmit might return a 200 but asking for activation
+      // We accept the result
+      setStatus('success');
+    } catch (error) {
+      console.warn("Email API unreachable, saved to local DB instead.", error);
+      // We treat this as success for the user because we saved the data locally
+      setStatus('success'); 
+    }
+
     setFormData({ name: '', phone: '', email: '', subject: 'General Inquiry', message: '' });
-    setTimeout(() => setStatus('idle'), 3000);
+    setTimeout(() => setStatus('idle'), 5000);
   };
 
   return (
@@ -164,15 +199,23 @@ const Contact: React.FC = () => {
                     </div>
                     
                     {status === 'success' && (
-                        <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-2xl flex items-center gap-2 border border-green-100">
+                        <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-2xl flex items-center gap-2 border border-green-100 animate-in fade-in slide-in-from-top-2">
                             <div className="w-2 h-2 rounded-full bg-green-500"></div>
                             {lang === 'en' ? 'Message sent successfully!' : 'Fariinta waa la diray!'}
+                        </div>
+                    )}
+                    
+                    {status === 'sending' && (
+                        <div className="mb-6 p-4 bg-blue-50 text-blue-700 rounded-2xl flex items-center gap-2 border border-blue-100">
+                            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
+                            {lang === 'en' ? 'Sending message...' : 'Fariinta waa la dirayaa...'}
                         </div>
                     )}
 
                     <button 
                         type="submit" 
-                        className="w-full bg-[#0B1E3F] text-white font-bold py-5 rounded-2xl hover:bg-[#3B82F6] transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-blue-900/20 group"
+                        disabled={status === 'sending'}
+                        className="w-full bg-[#0B1E3F] text-white font-bold py-5 rounded-2xl hover:bg-[#3B82F6] transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-blue-900/20 group disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {lang === 'en' ? 'Send Message' : 'Dir Fariinta'} 
                         <Send size={18} className="group-hover:translate-x-1 transition-transform" />
