@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { LanguageContext } from '../App';
 import { Plus, Minus } from 'lucide-react';
+import { COMPANY_NAME, CONTACT_EMAIL } from '../constants';
 
 const FAQ: React.FC = () => {
   const { lang } = useContext(LanguageContext);
@@ -8,14 +9,14 @@ const FAQ: React.FC = () => {
 
   const faqs = [
     {
-      q: { en: "What services does Somtech provide?", so: "Waa maxay adeegyada ay bixiso Somtech?" },
+      q: { en: `What services does ${COMPANY_NAME} provide?`, so: `Waa maxay adeegyada ay bixiso ${COMPANY_NAME}?` },
       a: { 
         en: "We offer a wide range of general services including IT solutions, logistics, construction, security, and corporate consultancy.",
         so: "Waxaan bixinaa adeegyo guud oo kala duwan oo ay ku jiraan xalalka IT-ga, saadka, dhismaha, amniga, iyo la-talinta shirkadaha."
       }
     },
     {
-      q: { en: "Where is Somtech located?", so: "Halkee bay ku taallaa Somtech?" },
+      q: { en: `Where is ${COMPANY_NAME} located?`, so: `Halkee bay ku taallaa ${COMPANY_NAME}?` },
       a: { 
         en: "Our headquarters are located at KM4 Junction, Mogadishu, Somalia. We also operate in various regions across East Africa.",
         so: "Xaruntayada dhexe waxay ku taallaa Isgoyska KM4, Muqdisho, Soomaaliya. Waxaan sidoo kale ka hawlgallaa gobollo kala duwan oo ka tirsan Bariga Afrika."
@@ -24,8 +25,8 @@ const FAQ: React.FC = () => {
     {
       q: { en: "How can I request a quote?", so: "Sidee baan ku dalban karaa qiimo?" },
       a: { 
-        en: "You can request a quote by visiting our Contact page and filling out the inquiry form, or by emailing us directly at info@somyunimah.com.",
-        so: "Waxaad ku dalban kartaa qiimo adigoo booqanaya bogga Xiriirka oo buuxinaya foomka weydiinta, ama adigoo si toos ah noogu soo diraya email info@somyunimah.com."
+        en: `You can request a quote by visiting our Contact page and filling out the inquiry form, or by emailing us directly at ${CONTACT_EMAIL}.`,
+        so: `Waxaad ku dalban kartaa qiimo adigoo booqanaya bogga Xiriirka oo buuxinaya foomka weydiinta, ama adigoo si toos ah noogu soo diraya email ${CONTACT_EMAIL}.`
       }
     },
     {

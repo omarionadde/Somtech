@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { LanguageContext } from '../App';
 import { db } from '../lib/db';
 import { Service } from '../types';
-import { ICON_MAP, WHATSAPP_NUMBER } from '../constants';
+import { ICON_MAP, WHATSAPP_NUMBER, COMPANY_NAME } from '../constants';
 import { ArrowLeft, CheckCircle2, MessageSquare, ChevronRight, ArrowUpRight } from 'lucide-react';
 
 const ServiceDetail: React.FC = () => {
@@ -86,14 +86,14 @@ const ServiceDetail: React.FC = () => {
                 </p>
                 <p>
                    {lang === 'en'
-                    ? "We utilize the latest methodologies and tools to ensure that our solutions are not only efficient but also future-proof. Whether you are looking for local implementation or large-scale transformation, Somtech has the capabilities to deliver."
-                    : "Waxaan isticmaalnaa qaababkii iyo qalabkii ugu dambeeyay si aan u hubinno in xalalkayagu aysan ahayn kaliya kuwa waxtar leh laakiin sidoo kale kuwa u diyaarsan mustaqbalka. Haddii aad raadinayso hirgelin maxalli ah ama isbeddel weyn, Somtech waxay leedahay awood ay ku fuliso."}
+                    ? `We utilize the latest methodologies and tools to ensure that our solutions are not only efficient but also future-proof. Whether you are looking for local implementation or large-scale transformation, ${COMPANY_NAME} has the capabilities to deliver.`
+                    : `Waxaan isticmaalnaa qaababkii iyo qalabkii ugu dambeeyay si aan u hubinno in xalalkayagu aysan ahayn kaliya kuwa waxtar leh laakiin sidoo kale kuwa u diyaarsan mustaqbalka. Haddii aad raadinayso hirgelin maxalli ah ama isbeddel weyn, ${COMPANY_NAME} waxay leedahay awood ay ku fuliso.`}
                 </p>
               </div>
 
               <div className="mt-16">
                 <h3 className="text-2xl font-bold text-gray-900 mb-8">
-                  {lang === 'en' ? 'Key Benefits' : 'Faa'iidooyinka Muhiimka ah'}
+                  {lang === 'en' ? 'Key Benefits' : 'Faa\'iidooyinka Muhiimka ah'}
                 </h3>
                 <div className="grid md:grid-cols-1 gap-4">
                   {benefits.map((benefit, idx) => (

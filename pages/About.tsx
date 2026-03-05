@@ -25,15 +25,15 @@ const About: React.FC = () => {
 
              <div className="container mx-auto px-6 relative z-10 text-center">
                 <span className="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/10 text-[#00E08F] text-xs font-bold tracking-widest uppercase mb-6 backdrop-blur-md">
-                    {lang === 'en' ? 'Who We Are' : 'Waa Kuma Somtech'}
+                    {lang === 'en' ? `Who We Are` : `Waa Kuma ${COMPANY_NAME}`}
                 </span>
-                <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight">
                     {lang === 'en' ? 'Building the' : 'Dhisidda'} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00E08F] to-emerald-200">{lang === 'en' ? 'Future' : 'Mustaqbalka'}</span>.
                 </h1>
-                <p className="text-blue-100/80 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed font-light">
+                <p className="text-blue-100/80 max-w-3xl mx-auto text-lg md:text-2xl leading-relaxed font-light">
                     {lang === 'en' 
-                        ? "Somtech is more than a service provider. We are the architects of efficiency, bringing global standards to East Africa's growing market."
-                        : "Somtech ma aha oo kaliya bixiye adeeg. Waxaan nahay injineerada hufnaanta, annagoo keenayna heerar caalami ah suuqa koraya ee Bariga Afrika."}
+                        ? `${COMPANY_NAME} is more than a service provider. We are the architects of efficiency, bringing global standards to East Africa's growing market.`
+                        : `${COMPANY_NAME} ma aha oo kaliya bixiye adeeg. Waxaan nahay injineerada hufnaanta, annagoo keenayna heerar caalami ah suuqa koraya ee Bariga Afrika.`}
                 </p>
             </div>
         </div>
@@ -45,8 +45,8 @@ const About: React.FC = () => {
                 <div className="md:col-span-2 bg-white p-10 rounded-[2.5rem] shadow-xl shadow-gray-200/50 border border-gray-100 flex flex-col justify-center relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[100px] -mr-4 -mt-4 transition-all group-hover:bg-[#0B1E3F] group-hover:scale-110 duration-500"></div>
                     <Target className="w-12 h-12 text-[#0B1E3F] mb-6 relative z-10 group-hover:text-white transition-colors duration-500" />
-                    <h3 className="text-2xl font-bold text-[#0B1E3F] mb-4 relative z-10">{lang === 'en' ? 'Our Mission' : 'Hawlgalkayaga'}</h3>
-                    <p className="text-gray-500 text-lg leading-relaxed relative z-10 group-hover:text-gray-800 transition-colors">
+                    <h3 className="text-3xl font-bold text-[#0B1E3F] mb-4 relative z-10">{lang === 'en' ? 'Our Mission' : 'Hawlgalkayaga'}</h3>
+                    <p className="text-gray-500 text-lg md:text-xl leading-relaxed relative z-10 group-hover:text-gray-800 transition-colors">
                         {lang === 'en' 
                         ? `To empower businesses and improve lives across the region by delivering world-class general services with unmatched reliability.` 
                         : `Si aan u awood-siinno ganacsiyada isla markaana aan u horumarinno nolosha gobolka annagoo bixinayna adeegyo guud oo heer caalami ah.`}
@@ -107,7 +107,7 @@ const About: React.FC = () => {
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B1E3F]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
                                     <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
                                         <p className="text-white text-xs font-bold uppercase tracking-wider mb-1">{member.role}</p>
-                                        <p className="text-white text-sm opacity-80">Driving innovation at Somtech.</p>
+                                        <p className="text-white text-sm opacity-80">Driving innovation at {COMPANY_NAME}.</p>
                                     </div>
                                 </div>
                             </div>

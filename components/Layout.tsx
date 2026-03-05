@@ -32,7 +32,7 @@ export const Navbar: React.FC = () => {
         >
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 pl-1 group">
-             <div className="w-10 h-10 flex items-center justify-center bg-white rounded-full p-2 shadow-lg group-hover:scale-105 transition-transform">
+             <div className="w-10 h-10 flex items-center justify-center bg-white rounded-full p-1 shadow-lg group-hover:scale-105 transition-transform overflow-hidden">
                 <img src={LOGO_URL} alt={COMPANY_NAME} className="w-full h-full object-contain" />
              </div>
              <span className="text-xl font-bold text-white tracking-tight hidden sm:block">
@@ -70,10 +70,10 @@ export const Navbar: React.FC = () => {
                 <Globe size={18} /> <span className="hidden sm:inline">{lang}</span>
               </button>
 
-             {/* CTA Button */}
+             {/* CTA Button - Updated to Blue */}
              <Link 
                 to="/contact" 
-                className="hidden sm:flex bg-[#00E08F] text-[#0B1E3F] px-6 py-3 rounded-full font-bold text-xs hover:bg-white hover:scale-105 transition-all duration-300 items-center gap-2 shadow-[0_0_15px_rgba(0,224,143,0.4)]"
+                className="hidden sm:flex bg-[#3B82F6] text-white px-6 py-3 rounded-full font-bold text-xs hover:bg-white hover:text-[#0B1E3F] hover:scale-105 transition-all duration-300 items-center gap-2 shadow-[0_0_15px_rgba(59,130,246,0.4)]"
               >
                 {lang === 'en' ? "LET'S TALK" : 'NALA HADAL'}
                 <ArrowUpRight size={18} />
@@ -92,7 +92,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 bg-[#0B1E3F] z-40 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,224,143,0.1),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.1),transparent_50%)]"></div>
         <div className="flex flex-col h-full pt-32 px-8 pb-10 overflow-y-auto relative z-10">
           <div className="flex flex-col space-y-4">
             {NAV_LINKS.map((link, idx) => (
@@ -103,10 +103,10 @@ export const Navbar: React.FC = () => {
                 className={`text-4xl font-bold py-2 flex items-center gap-4 group transition-all duration-500 ${isOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}
                 style={{ transitionDelay: `${idx * 50}ms` }}
               >
-                <span className={`group-hover:text-[#00E08F] transition-colors ${isActive(link.path) ? 'text-[#00E08F]' : 'text-white'}`}>
+                <span className={`group-hover:text-[#3B82F6] transition-colors ${isActive(link.path) ? 'text-[#3B82F6]' : 'text-white'}`}>
                   {link.label[lang]}
                 </span>
-                <ArrowRight size={24} className="text-[#00E08F] opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                <ArrowRight size={24} className="text-[#3B82F6] opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
               </Link>
             ))}
           </div>
@@ -114,7 +114,7 @@ export const Navbar: React.FC = () => {
              <Link 
               to="/contact" 
               onClick={() => setIsOpen(false)}
-              className="block w-full bg-[#00E08F] text-[#0B1E3F] py-5 rounded-2xl text-center font-bold text-lg shadow-xl shadow-[#00E08F]/20 active:scale-95 transition-transform"
+              className="block w-full bg-[#3B82F6] text-white py-5 rounded-2xl text-center font-bold text-lg shadow-xl shadow-[#3B82F6]/20 active:scale-95 transition-transform"
             >
               {lang === 'en' ? 'Start Your Project' : 'Bilow Mashruucaaga'}
             </Link>
@@ -137,7 +137,7 @@ export const Footer: React.FC = () => {
                 <div className="flex flex-col lg:flex-row justify-between items-start gap-16 mb-20">
                     <div className="space-y-6 max-w-sm">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-2">
+                            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center p-1">
                                 <img src={LOGO_URL} alt={COMPANY_NAME} className="w-full h-full object-contain" />
                             </div>
                             <span className="text-2xl font-bold tracking-tight text-white">{COMPANY_NAME}</span>
@@ -149,7 +149,7 @@ export const Footer: React.FC = () => {
                         </p>
                         <div className="flex gap-4">
                             {[Twitter, Linkedin, Facebook, Instagram].map((Icon, i) => (
-                                <a key={i} href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-[#00E08F] hover:border-[#00E08F] hover:bg-[#00E08F]/10 transition-all">
+                                <a key={i} href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:text-[#3B82F6] hover:border-[#3B82F6] hover:bg-[#3B82F6]/10 transition-all">
                                     <Icon size={18} />
                                 </a>
                             ))}
@@ -160,17 +160,17 @@ export const Footer: React.FC = () => {
                         <div>
                             <h4 className="font-bold text-white mb-6 text-sm uppercase tracking-widest">{lang === 'en' ? 'Company' : 'Shirkadda'}</h4>
                             <ul className="space-y-4 text-sm text-gray-400">
-                                <li><Link to="/about" className="hover:text-[#00E08F] transition-colors">About</Link></li>
-                                <li><Link to="/services" className="hover:text-[#00E08F] transition-colors">Services</Link></li>
-                                <li><Link to="/careers" className="hover:text-[#00E08F] transition-colors">Careers</Link></li>
+                                <li><Link to="/about" className="hover:text-[#3B82F6] transition-colors">About</Link></li>
+                                <li><Link to="/services" className="hover:text-[#3B82F6] transition-colors">Services</Link></li>
+                                <li><Link to="/careers" className="hover:text-[#3B82F6] transition-colors">Careers</Link></li>
                             </ul>
                         </div>
                         <div>
                             <h4 className="font-bold text-white mb-6 text-sm uppercase tracking-widest">{lang === 'en' ? 'Resources' : 'Khayraadka'}</h4>
                             <ul className="space-y-4 text-sm text-gray-400">
-                                <li><Link to="/blog" className="hover:text-[#00E08F] transition-colors">Blog</Link></li>
-                                <li><Link to="/faq" className="hover:text-[#00E08F] transition-colors">FAQ</Link></li>
-                                <li><Link to="/privacy" className="hover:text-[#00E08F] transition-colors">Privacy</Link></li>
+                                <li><Link to="/blog" className="hover:text-[#3B82F6] transition-colors">Blog</Link></li>
+                                <li><Link to="/faq" className="hover:text-[#3B82F6] transition-colors">FAQ</Link></li>
+                                <li><Link to="/privacy" className="hover:text-[#3B82F6] transition-colors">Privacy</Link></li>
                             </ul>
                         </div>
                     </div>

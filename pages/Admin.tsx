@@ -3,7 +3,7 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line
 } from 'recharts';
 import { Users, Eye, FileText, Settings, LogOut, Bell, Search, Plus, Save, X, Trash2, Briefcase, Truck, User } from 'lucide-react';
-import { AVAILABLE_ICONS, ICON_MAP } from '../constants';
+import { AVAILABLE_ICONS, ICON_MAP, COMPANY_NAME } from '../constants';
 import { db, Inquiry } from '../lib/db';
 import { BlogPost, Project, Service, TeamMember, Testimonial } from '../types';
 
@@ -112,7 +112,7 @@ const Admin: React.FC = () => {
       {/* Sidebar */}
       <aside className="w-64 bg-somtech-blue text-white flex flex-col hidden md:flex sticky top-0 h-screen overflow-y-auto">
         <div className="p-6">
-          <h2 className="text-2xl font-bold">Somtech Admin</h2>
+          <h2 className="text-2xl font-bold">{COMPANY_NAME} Admin</h2>
         </div>
         <nav className="flex-1 px-4 space-y-2">
           <button onClick={() => setActiveTab('dashboard')} className={`flex items-center gap-3 w-full px-4 py-3 rounded transition ${activeTab === 'dashboard' ? 'bg-somtech-accent text-somtech-blue font-bold' : 'hover:bg-white/10'}`}>
@@ -142,7 +142,7 @@ const Admin: React.FC = () => {
       <main className="flex-1 flex flex-col max-h-screen overflow-hidden">
         {/* Header */}
         <header className="bg-white shadow-sm p-4 flex justify-between items-center shrink-0 z-10">
-            <div className="md:hidden font-bold text-somtech-blue">Somtech Admin</div>
+            <div className="md:hidden font-bold text-somtech-blue">{COMPANY_NAME} Admin</div>
             <div className="flex items-center bg-gray-100 rounded-lg px-3 py-2 w-full max-w-md mx-4 md:mx-0">
                 <Search size={18} className="text-gray-400" />
                 <input type="text" placeholder="Search..." className="bg-transparent border-none outline-none ml-2 w-full text-sm" />
@@ -182,6 +182,38 @@ const Admin: React.FC = () => {
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                             <div className="text-gray-500 text-sm mb-1">Blog Posts</div>
                             <div className="text-3xl font-bold text-somtech-blue">{stats.postsCount}</div>
+                        </div>
+                    </div>
+
+                    {/* Charts Section */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <h3 className="font-bold text-gray-700 mb-4">Inquiries Overview</h3>
+                            <div className="h-64">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={chartData}>
+                                        <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                                        <XAxis dataKey="name" axisLine={false} tickLine={false} />
+                                        <YAxis axisLine={false} tickLine={false} />
+                                        <Tooltip />
+                                        <Bar dataKey="inquiries" fill="#3B82F6" radius={[4, 4, 0, 0]} />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            </div>
+                        </div>
+                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <h3 className="font-bold text-gray-700 mb-4">Website Visits</h3>
+                            <div className="h-64">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <LineChart data={chartData}>
+                                        <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                                        <XAxis dataKey="name" axisLine={false} tickLine={false} />
+                                        <YAxis axisLine={false} tickLine={false} />
+                                        <Tooltip />
+                                        <Line type="monotone" dataKey="visits" stroke="#0B1E3F" strokeWidth={2} dot={{ r: 4 }} />
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </div>
                         </div>
                     </div>
 

@@ -51,10 +51,10 @@ const Pricing: React.FC = () => {
     <div className="fade-in py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold text-somtech-blue mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold text-somtech-blue mb-6">
                 {lang === 'en' ? 'Transparent Pricing' : 'Qiimaha Cad'}
             </h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
                 {lang === 'en' 
                 ? "Choose the plan that fits your business needs. No hidden fees." 
                 : "Dooro qorshaha ku habboon baahiyahaaga ganacsi. Ma jiraan kharashyo qarsoon."}
@@ -69,14 +69,14 @@ const Pricing: React.FC = () => {
                             {lang === 'en' ? 'Popular' : 'Caan ah'}
                         </div>
                     )}
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.name[lang]}</h3>
-                    <div className="text-4xl font-extrabold text-somtech-blue mb-4">{plan.price[lang]}</div>
-                    <p className="text-gray-500 mb-8">{plan.desc[lang]}</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name[lang]}</h3>
+                    <div className="text-5xl font-extrabold text-somtech-blue mb-4">{plan.price[lang]}</div>
+                    <p className="text-gray-500 text-lg mb-8">{plan.desc[lang]}</p>
                     
                     <ul className="space-y-4 mb-8 flex-1">
                         {plan.features.map((feature, fIdx) => (
-                            <li key={fIdx} className="flex items-start gap-3 text-gray-700 text-sm">
-                                <Check size={18} className="text-green-500 shrink-0 mt-0.5" />
+                            <li key={fIdx} className="flex items-start gap-3 text-gray-700 text-base">
+                                <Check size={20} className="text-green-500 shrink-0 mt-0.5" />
                                 <span>{feature[lang]}</span>
                             </li>
                         ))}

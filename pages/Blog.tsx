@@ -16,10 +16,10 @@ const Blog: React.FC = () => {
     <div className="fade-in py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold text-somtech-blue mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold text-somtech-blue mb-6">
                 {lang === 'en' ? 'Latest Insights & News' : 'Wararka & Fikradaha Ugu Dambeeyay'}
             </h1>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
                 {lang === 'en' 
                 ? "Stay updated with our latest company news, industry trends, and success stories." 
                 : "La soco wararkii ugu dambeeyay ee shirkadda, isbeddellada suuqa, iyo sheekooyinka guusha."}
@@ -37,10 +37,10 @@ const Blog: React.FC = () => {
                             <Calendar size={14} className="text-somtech-accent"/>
                             <span>{post.date}</span>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{post.title}</h3>
-                        <p className="text-gray-600 text-sm mb-4 flex-1 line-clamp-3">{post.excerpt}</p>
-                        <button className="text-somtech-blue font-bold text-sm hover:text-somtech-lightBlue transition flex items-center gap-1">
-                            {lang === 'en' ? 'Read Article' : 'Akhri Maqaalka'} <ArrowRight size={16}/>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-3 line-clamp-2">{post.title}</h3>
+                        <p className="text-gray-600 text-base mb-6 flex-1 line-clamp-3 leading-relaxed">{post.excerpt}</p>
+                        <button className="text-somtech-blue font-bold text-base hover:text-somtech-lightBlue transition flex items-center gap-2">
+                            {lang === 'en' ? 'Read Article' : 'Akhri Maqaalka'} <ArrowRight size={18}/>
                         </button>
                     </div>
                 </div>

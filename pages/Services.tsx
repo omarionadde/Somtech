@@ -22,11 +22,11 @@ const Services: React.FC = () => {
                 <span className="text-[#00E08F] font-bold tracking-widest uppercase text-xs mb-4 block animate-fade-in-up">
                     {lang === 'en' ? 'Our Capabilities' : 'Awoodeena'}
                 </span>
-                <h1 className="text-5xl md:text-7xl font-bold text-[#0B1E3F] mb-8 leading-[1.1] animate-fade-in-up [animation-delay:100ms]">
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-[#0B1E3F] mb-8 leading-[1.1] animate-fade-in-up [animation-delay:100ms]">
                     {lang === 'en' ? 'Services designed for' : 'Adeegyo loo qaabeeyay'} <br/>
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B1E3F] to-blue-600">{lang === 'en' ? 'growth & scale.' : 'koboca & baaxadda.'}</span>
                 </h1>
-                <p className="text-gray-500 text-xl leading-relaxed animate-fade-in-up [animation-delay:200ms]">
+                <p className="text-gray-500 text-xl md:text-2xl leading-relaxed animate-fade-in-up [animation-delay:200ms]">
                     {lang === 'en' 
                     ? "We deliver excellence across multiple sectors, ensuring your business has the robust foundation it needs to thrive in a competitive landscape." 
                     : "Waxaan bixinaa heer sare qaybo badan, annagoo hubinayna in ganacsigaagu helo aasaas adag oo uu ugu baahan yahay inuu ku horumaro."}
@@ -55,10 +55,10 @@ const Services: React.FC = () => {
 
                             {/* Content */}
                             <div className="flex-1 relative z-10">
-                                <h3 className="text-2xl md:text-3xl font-bold text-[#0B1E3F] mb-3">
+                                <h3 className="text-2xl md:text-4xl font-bold text-[#0B1E3F] mb-4">
                                     {service.title[lang]}
                                 </h3>
-                                <p className="text-gray-500 text-lg leading-relaxed max-w-2xl group-hover:text-gray-600 transition-colors">
+                                <p className="text-gray-500 text-lg md:text-xl leading-relaxed max-w-2xl group-hover:text-gray-600 transition-colors">
                                     {service.description[lang]}
                                 </p>
                             </div>
